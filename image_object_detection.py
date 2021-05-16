@@ -76,7 +76,7 @@ def extractDataset(dataset,filename):
         # Saving the image
 
         i = i + 1
-    directory =r"working/static"
+    directory =r"F:\Sugam Internship\Baggage AI\Image-Object-Detection-using-XML\static"
     print(directory)
     os.chdir(directory)
     cv2.imwrite(filename, img)
