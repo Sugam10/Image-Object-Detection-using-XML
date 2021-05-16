@@ -1,10 +1,9 @@
 from flask import Flask, request, jsonify, render_template, url_for
 import os
-from main import process
+from image_object_detection import process
 
-app = Flask(__name__)
-app.config["UPLOAD_PATH"] = "data/"
-current = os.getcwd()
+app= Flask(__name__)
+app.config["UPLOAD_PATH"]="data/"
 
 showFolder = os.path.join('static')
 print(showFolder)
@@ -13,7 +12,7 @@ app.config['SHOW_FOLDER'] = showFolder
 @app.route('/',methods=["GET","POST"])
 def upload_file():
     if request.method =="POST":
-        directory =r"current"
+        directory =r"F:\Sugam Internship\Baggage AI\Image-Object-Detection-using-XML"
         os.chdir(directory)
         for f in request.files.getlist('file_name'):
             # f= request.files['file_name']
@@ -25,11 +24,10 @@ def upload_file():
                 print(filePath)
                 path = os.getcwd()
                 # print(os.path.dirname(path)+'\data'+path)
-                pic1 = os.path.join(app.config['SHOW_FOLDER'], 'savedImage.jpg')
+                pic1 = os.path.join(app.config['SHOW_FOLDER'], filePath)
                 print(pic1)
         return render_template("index.html", user_image=pic1)
     return render_template("index.html",msg="please choose the file")
-
 
 if __name__ =='__main__':
     app.run(debug=True)
